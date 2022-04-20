@@ -10,11 +10,25 @@ import UIKit
 class ContactList{
     var list = [Contact]()
     
+    var ContactURL: URL{
+        let documentDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory = documentDirectories.first!
+        return documentDirectory.appendingPathComponent("contact.archive")
+    }
+    
     //var contactList: ContactList
     init(){
-        for _ in 0...11{
-            list.append(Contact(random: true))
+//        for _ in 0...11{
+//            list.append(Contact(random: true))
+//        }
+        do{
+            let data = try Data(contentsOf: ContactURL)
+            list = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! [Contact]
+            print("data load")
+        }catch let err{
+            print(err)
         }
+        
     }
     
     func moveContact(from fromIndex: Int, to toIndex: Int){
@@ -47,4 +61,15 @@ class ContactList{
      
         list.remove(at: at)
     }
+    
+    func save(){
+        do{
+            let data = try NSKeyedArchiver.archivedData(withRootObject: list, requiringSecureCoding: false)
+            try data.write(to: ContactURL)
+            print("saved")
+        }catch let err{
+            print(err)
+        }
+        }
+        
 }

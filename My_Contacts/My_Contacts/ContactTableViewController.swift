@@ -20,11 +20,13 @@ class ContactTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
          self.navigationItem.leftBarButtonItem = self.editButtonItem
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        contactList.list.sort { $0.name < $1.name}
+       // super.viewWillAppear(animated)
+      
+       // contactList.list.sort { $0.name < $1.name}
         tableView.reloadData()
         
     }

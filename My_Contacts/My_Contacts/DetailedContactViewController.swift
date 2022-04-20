@@ -61,27 +61,9 @@ class DetailedContactViewController: UIViewController {
                     let number = contactNumberField.text
                 else {return}
                 
-                //let contact = contactList.list[indexPath.row]
-//                print("updating it")
+
                 contactList.updateContact(at: indexPath.row, name: name, lastName: lastName, number: number)
                 
-                
-//                if (name != "" || lastName != "" || number != ""){
-//                    contactList.addContact(name: name, lastName: lastName, number: number)
-//                }
-                
-            }
-            
-            
-//            if let name = firstNameField.text{
-//                contact = contactList.addContact(name: name)
-//            }
-//            if let lastName = lastNameField.text{
-//                contact.lastName = lastName
-//            }
-//            if let number = contactNumberField.text{
-//                contact.number = number
-//            }
         }
     }
 
