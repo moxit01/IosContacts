@@ -80,14 +80,20 @@ class ContactTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             
-            let alert = UIAlertController(title: "Are you sure you want to delete?", message: "Deleted contacts cannot be retrieved", preferredStyle: .alert)
+            let title = NSLocalizedString("Are you sure you want to delete?", comment: "alertController title")
+            let message = NSLocalizedString("Deleted contacts cannot be retrieved", comment: "alertController message")
+            
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
+            let affirm = NSLocalizedString("Yes", comment: "alertyes")
+            let decline = NSLocalizedString("No", comment: "alertno")
 
-            let yes = UIAlertAction(title: "Yes", style: .destructive)
+            let yes = UIAlertAction(title: affirm, style: .destructive)
             {(UIAlertAction) in
                 self.contactList.deleteContact(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
-            let cancel = UIAlertAction(title: "No", style: .cancel, handler: nil)
+            let cancel = UIAlertAction(title: decline, style: .cancel, handler: nil)
             
             alert.addAction(yes)
             alert.addAction(cancel)
